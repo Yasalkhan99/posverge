@@ -2,12 +2,13 @@ import type { Metadata } from 'next'
 import '../styles/globals.css'
 
 export const metadata: Metadata = {
-  title: 'Aivora - AI Agency & Technology React Template',
-  description: 'Web site created using Next.js',
+  title: 'POS Verge',
+  description: 'POS Verge - Leading Payment Solutions Provider',
   themeColor: '#000000',
   icons: {
-    icon: '/favicon.svg',
-    apple: '/logo192.png',
+    icon: '/Asset 1.png',
+    apple: '/Asset 1.png',
+    shortcut: '/Asset 1.png',
   },
   manifest: '/manifest.json',
 }
@@ -20,6 +21,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <link rel="icon" href="/Asset 1.png" type="image/png" />
+        <link rel="shortcut icon" href="/Asset 1.png" type="image/png" />
+        <link rel="apple-touch-icon" href="/Asset 1.png" />
+        <link href="/static/css/main.c92bd3f8.css" rel="stylesheet" />
         <link
           rel="preload"
           href="/static/media/fa-solid-900.866bbb7a13a33d21b363.ttf"

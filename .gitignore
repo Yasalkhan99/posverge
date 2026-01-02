@@ -34,3 +34,10 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# Exclude unnecessary folders
+/soireerev-main/
+/aivora-react.netlify.app/
+/hts-cache/
+*.zip
+
+

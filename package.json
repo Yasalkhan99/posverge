@@ -1,5 +1,5 @@
 {
-  "name": "aivora-nextjs",
+  "name": "pos-verge-nextjs",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -20,4 +20,5 @@
     "typescript": "^5.3.2"
   }
 }
+
 

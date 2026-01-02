@@ -1,0 +1,11 @@
+// Import vendor CSS - using relative paths from public folder
+@import url('/assets/vendor/bootstrap/css/bootstrap.min.css');
+@import url('/assets/vendor/glyyphter/css/xpovio.css');
+@import url('/assets/vendor/font-awesome/css/all.css');
+@import url('/assets/vendor/nice-select/css/nice-select.css');
+@import url('/assets/vendor/magnific-popup/css/magnific-popup.css');
+@import url('/assets/vendor/slick/css/slick.css');
+
+// Import SCSS source files directly (so changes take effect immediately)
+@import '../styles/scss/main.scss';
+

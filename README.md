@@ -1,6 +1,6 @@
-# Aivora Next.js Project
+# POS VERGE Next.js Project
 
-This is a Next.js conversion of the Aivora React template.
+This is a Next.js conversion of the POS VERGE React template.
 
 ## Getting Started
 
@@ -55,4 +55,5 @@ This project currently loads the original React app's JavaScript bundle. For a f
 4. Convert any client-side routing to Next.js routing
 
 The current setup allows the original React app to run within Next.js, which is a good starting point for gradual migration.
+
 
