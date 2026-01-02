@@ -106,8 +106,17 @@ export default function Home() {
           return // React app not loaded yet
         }
         
+        // Footer copyright text ko replace karna - pehle yeh
+        const copyrightElements = document.querySelectorAll('.footer__copyright-text p, .footer__copyright p, footer p')
+        copyrightElements.forEach((element) => {
+          if (element.textContent && element.textContent.includes('Copyright') && element.textContent.includes('Aivora')) {
+            element.textContent = element.textContent.replace(/Copyright\s*©\s*\d{4}\s*Aivora/gi, 'Copyright © 2026 POS Verge')
+            element.textContent = element.textContent.replace(/Aivora.*All rights reserved/gi, 'POS Verge. All rights reserved')
+          }
+        })
+        
         // Only replace in specific safe elements - avoid breaking React structure
-        const safeSelectors = 'h1.title, h2.title, .title, [data-text], button[class*="email"], a[href*="mailto:"]'
+        const safeSelectors = 'h1.title, h2.title, .title'
         const safeElements = document.querySelectorAll(safeSelectors)
         
         safeElements.forEach((element) => {
@@ -124,32 +133,34 @@ export default function Home() {
             if (/Aivora/i.test(element.textContent) && !element.textContent.includes('POS Verge')) {
               element.textContent = element.textContent.replace(/Aivora/gi, 'POS Verge')
             }
-            
-            // Email replace - only in email buttons/links
-            if (element.textContent.includes('@') && (element.textContent.includes('@posverge.com') || element.textContent.includes('@domain.com'))) {
-              // "POS info@posverge.com" ko "info@posverge.com" se replace
-              if (element.textContent.includes('POS') && element.textContent.includes('info@posverge.com')) {
-                element.textContent = element.textContent.replace(/POS\s+info@posverge\.com/gi, 'info@posverge.com')
-              }
-              // POS Verge@posverge.com ko replace
-              if (element.textContent.includes('POS Verge@') || element.textContent.includes('POSVerge@')) {
-                element.textContent = element.textContent.replace(/POS\s*Verge@posverge\.com/gi, 'info@posverge.com')
-              }
-              // aivora@ ko replace
-              if (element.textContent.includes('aivora@') || element.textContent.includes('@domain.com')) {
-                element.textContent = element.textContent.replace(/aivora@[^\s]*/gi, 'info@posverge.com')
-                element.textContent = element.textContent.replace(/@domain\.com/gi, '@posverge.com')
-              }
-            }
           }
         })
         
-        // Email links href update
-        const emailLinks = document.querySelectorAll('a[href*="mailto:"]')
+        // Email links - sirf email buttons/links
+        const emailLinks = document.querySelectorAll('a[href*="mailto:"], button[class*="email"]')
         emailLinks.forEach((link) => {
-          const linkElement = link as HTMLAnchorElement
-          if (linkElement.href && (linkElement.href.includes('aivora@') || linkElement.href.includes('mailto:aivora@'))) {
+          const linkElement = link as HTMLAnchorElement | HTMLButtonElement
+          
+          // href update
+          if (linkElement instanceof HTMLAnchorElement && linkElement.href && linkElement.href.includes('aivora@')) {
             linkElement.href = 'mailto:info@posverge.com'
+          }
+          
+          // Text content update - sirf email containing text
+          if (linkElement.textContent && linkElement.textContent.includes('@')) {
+            // "POS info@posverge.com" ko "info@posverge.com" se replace
+            if (linkElement.textContent.includes('POS') && linkElement.textContent.includes('info@posverge.com')) {
+              linkElement.textContent = linkElement.textContent.replace(/POS\s+info@posverge\.com/gi, 'info@posverge.com')
+            }
+            // POS Verge@posverge.com ko replace
+            if (linkElement.textContent.includes('POS Verge@') || linkElement.textContent.includes('POSVerge@')) {
+              linkElement.textContent = linkElement.textContent.replace(/POS\s*Verge@posverge\.com/gi, 'info@posverge.com')
+            }
+            // aivora@ ko replace
+            if (linkElement.textContent.includes('aivora@') || linkElement.textContent.includes('@domain.com')) {
+              linkElement.textContent = linkElement.textContent.replace(/aivora@[^\s]*/gi, 'info@posverge.com')
+              linkElement.textContent = linkElement.textContent.replace(/@domain\.com/gi, '@posverge.com')
+            }
           }
         })
       } catch (error) {
